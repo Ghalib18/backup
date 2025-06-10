@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h1>TODO-LIST</h1>
+  <input type="text" id="input" placeholder="enter task">
+  <button id="bnt" onclick="addtodo()">Add the task</button>
+
+  <script>
+    let cnt = 1;
+
+    function deleteTodo(id) {
+      const ele = document.getElementById(id);
+      if(ele)document.querySelector("body").removeChild(ele);
+    }
+
+    function addtodo() {
+      const inpute = document.querySelector('#input');
+      const value = inpute.value;
+      if(value==="")return;
+
+      const id = cnt; // Save current cnt value before incrementing
+      const Newspan=document.createElement("span");
+      Newspan.innerText=value;
+      const Newbtn=document.createElement("button");
+      Newbtn.innerText="delete";
+      Newbtn.onclick = () => deleteTodo(id);
+      const NewDiv = document.createElement("div");
+      NewDiv.setAttribute('id', id);
+      NewDiv.appendChild(Newspan);
+      NewDiv.appendChild(Newbtn);
+      document.querySelector("body").appendChild(NewDiv);
+      cnt++; // Increment after use
+      inpute.value="";
+    }
+  </script>
+</body>
+
+</html>
